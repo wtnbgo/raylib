@@ -920,6 +920,19 @@ typedef bool (*SaveFileTextCallback)(const char *fileName, char *text); // FileI
 extern "C" {            // Prevents name mangling of functions
 #endif
 
+#ifndef RAYLIB_WINDOW_ASSERT
+#include <assert.h>
+#define RAYLIB_WINDOW_ASSERT assert
+#endif
+
+typedef void *RayWindowHandle;
+void SetTargetWindow(RayWindowHandle handle);
+RayWindowHandle CreateRayWindow(void);
+void DeleteRayWindow(RayWindowHandle handle);
+
+void SetWindowUserPointer(void *userPointer);
+void *GetWindowUserPointer()
+
 // Window-related functions
 RLAPI void InitWindow(int width, int height, const char *title);  // Initialize window and OpenGL context
 RLAPI bool WindowShouldClose(void);                               // Check if KEY_ESCAPE pressed or Close icon pressed
